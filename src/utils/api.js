@@ -7,14 +7,14 @@ export const fetchNews = async (endpoint, params = {}) => {
   try {
     const response = await axios.get(`${BASE_URL}/${endpoint}`, {
       params: { ...params, apiKey: API_KEY },
-      headers: {
-        'Upgrade-Insecure-Requests': 1, // Ensure secure requests
-      },
     });
-    console.log("response from api:", response.data.articles);
+
+    console.log("response from api:",response.data.articles)
+
     const filteredArticles = response.data.articles.filter(article => {
-      return article.description !== '[Removed]' && article.urlToImage !== null;
+      return  article.description !== '[Removed]' && article.urlToImage !== null;
     });
+
     return filteredArticles;
   } catch (error) {
     console.error('Error fetching news:', error);
